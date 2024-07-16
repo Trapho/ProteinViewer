@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="foerster.project.molecule_window.molecule_WindowController">
+   <children>
+      <BorderPane layoutY="-70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <VBox BorderPane.alignment="CENTER">
+               <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="File">
+                        <items>
+                          <MenuItem fx:id="MenuItemClose" mnemonicParsing="false" text="Close" />
+                              <MenuItem fx:id="MenuItemCopy" mnemonicParsing="false" text="Copy" />
+                              <MenuItem fx:id="MenuFullScreen" mnemonicParsing="false" text="Full Screen" />
+                              <CheckMenuItem fx:id="MenuItemDarkMode" mnemonicParsing="false" text="Dark Mode" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Edit">
+                        <items>
+                          <MenuItem fx:id="MenuItemUndo" mnemonicParsing="false" text="Undo" />
+                              <MenuItem fx:id="MenuItemRedo" mnemonicParsing="false" text="Redo" />
+                              <CheckMenuItem fx:id="MenuItemShowSticks" mnemonicParsing="false" text="Show Sticks" />
+                              <CheckMenuItem fx:id="MenuItemShowBalls" mnemonicParsing="false" text="Show Balls" />
+                              <CheckMenuItem fx:id="MenuItemShowRibbons" mnemonicParsing="false" text="Show Ribbons" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                          <MenuItem fx:id="MenuAbout" mnemonicParsing="false" text="About" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+                    <items>
+                        <Label fx:id="LabelPDBName" text="Label">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Separator orientation="VERTICAL" />
+                        <VBox>
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <Label text="Number of Atoms:           " />
+                                    <Label fx:id="LabelNumberAtoms" text="Label" />
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <Label text="Number of Amino Acids: " />
+                                    <Label fx:id="LabelNumberAA" text="Label" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Separator orientation="VERTICAL" />
+                        <Label text="Select Model" />
+                        <ChoiceBox fx:id="ModelChoiceBox" prefWidth="70.0" />
+                        <Separator orientation="VERTICAL" />
+                        <Label text="Scroll to chain:" />
+                        <MenuButton fx:id="MenuButtonScrollTo" mnemonicParsing="false" text="Chain" />
+                        <Separator orientation="VERTICAL" />
+                      <Button fx:id="ButtonUndo" mnemonicParsing="false" text="Undo" />
+                        <Button fx:id="ButtonRedo" mnemonicParsing="false" text="Redo" />
+                    </items>
+                  </ToolBar>
+                  <HBox>
+                     <children>
+                        <VBox>
+                           <children>
+                              <Label text="Sequence" />
+                              <Label text="2nd Structure" />
+                           </children>
+                        </VBox>
+                        <ListView fx:id="sequenceList" fixedCellSize="-0.6" orientation="HORIZONTAL" prefHeight="55.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+                  <TextFlow fx:id="textflowtest" />
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <TabPane tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab text="Structure">
+                  <content>
+                    <AnchorPane>
+                           <children>
+                              <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <top>
+                                    <VBox BorderPane.alignment="CENTER">
+                                       <children>
+                                          <ToolBar>
+                                            <items>
+                                                <CheckBox fx:id="BallsCheck" mnemonicParsing="false" text="Balls" />
+                                                <Slider fx:id="BallsSlider" />
+                                                <Separator orientation="VERTICAL" />
+                                                <CheckBox fx:id="SticksCheck" mnemonicParsing="false" text="Sticks" />
+                                                <Slider fx:id="SticksSlider" />
+                                                <CheckBox fx:id="CheckHighlight" mnemonicParsing="false" text="Highlight Backbone" />
+                                                <Separator orientation="VERTICAL" />
+                                                <CheckBox fx:id="MeshesCheck" mnemonicParsing="false" text="Ribbons" />
+                                                <Separator orientation="VERTICAL" />
+                                                <Label text="Coloring:" />
+                                                <ChoiceBox fx:id="ColorMenu" />
+                                                <Separator orientation="VERTICAL" />
+                                              <Button fx:id="ZoomInButton" mnemonicParsing="false" text="Zoom In" />
+                                                <Button fx:id="ZoomOutButton" mnemonicParsing="false" text="Zoom Out" />
+                                                <Button fx:id="ButtonCenter" mnemonicParsing="false" text="Center" />
+                                            </items>
+                                          </ToolBar>
+                                          <ToolBar>
+                                             <items>
+                                                <Label text="Select chains:" />
+                                                <MenuButton fx:id="MenuButtonChains" mnemonicParsing="false" text="Chains" />
+                                                <Separator orientation="VERTICAL" />
+                                                <Button fx:id="ExplodeButton" mnemonicParsing="false" text="Explode" />
+                                                <Button fx:id="ButtonTransition" mnemonicParsing="false" text="Transition" />
+                                                <Label text="Explosion size:" />
+                                                <ChoiceBox fx:id="ChoiceBoxExplosionSize" prefWidth="70.0" />
+                                                <Label text="Animations speed:" />
+                                                <ChoiceBox fx:id="ChoiceBoxAnimationSpeed" prefWidth="70.0" />
+                                                <MenuButton fx:id="menuCoolPlots" mnemonicParsing="false" prefWidth="180.0" text="cool Plots">
+                                                  <items>
+                                                    <MenuItem mnemonicParsing="false" text="Action 1" />
+                                                    <MenuItem mnemonicParsing="false" text="Action 2" />
+                                                  </items>
+                                                </MenuButton>
+                                             </items>
+                                          </ToolBar>
+                                       </children>
+                                    </VBox>
+                                 </top>
+                                 <center>
+                                    <Pane fx:id="MainPain" BorderPane.alignment="CENTER" />
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="PDB-Entry">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextArea fx:id="TextFieldPdbEntry" layoutX="180.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children></AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="Graphs">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <content>
+                                  <AnchorPane>
+                                       <children>
+                                          <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox>
+                                                   <children>
+                                                      <Pane fx:id="PaneGraphs" />
+                                                      <Pane />
+                                                   </children>
+                                                </VBox>
+                                                <VBox>
+                                                   <children>
+                                                      <Pane fx:id="PaneSecStrucPie" />
+                                                      <Pane prefHeight="200.0" prefWidth="200.0" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </ScrollPane>
+                           </children></AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
